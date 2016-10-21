@@ -16,7 +16,7 @@
     <div class="col-xs-8"><input class="form-control"  type="text" name="search" [(ngModel)]="word" placeholder="Rechercher"></div>
     <form (ngSubmit)="onSubmit()" #friendForm="ngForm">
       <div class="form-group">
-      <div class="col-xs-3"><input type="text" id="firstname" #firstname="ngModel" [(ngModel)]="newFriend.firstname" required class="form-control" placeholder="prénom" name="firstname"></div>
+      <div class="col-xs-3"><input type="text" id="firstname" #firstname="ngModel" (ngModel)="newFriend.firstname" required class="form-control" placeholder="prénom" name="firstname"></div>
       <!-- <div class="col-xs-3"><input class="form form-control" (ngModel)="newFriend.phone" name="phone" required placeholder="téléphone"></div>
       <div class="col-xs-3"><input class="form form-control" (ngModel)="newFriend.address" name="address" required placeholder="adresse"></div> -->
     </div>
@@ -26,10 +26,10 @@
 </div>
 <div class="container content">
   <div class="col-xs-6">
-    <h2>Vous avez {{friends.length}} contacts</h2>
+    <h2>Vous avez {{tabfriends.length}} contacts</h2>
     <div class="contactcontainer">
       <ul>
-        <li  (click)="showDetails(friend)" *ngFor = "let friend of friends">
+        <li  (click)="showDetails(friend)" *ngFor = "let friend of tabfriends">
           <button (click)="deleteFriend(friend)" class="btn btn-info">X</button>  <img [src]="friend.image">    {{friend.firstname}}
         </li>
       </ul>
