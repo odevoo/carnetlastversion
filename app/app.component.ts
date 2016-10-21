@@ -1,20 +1,38 @@
 import { Component, Input} from '@angular/core';
+import { NgModule } from '@angular/core';
+
+import {
+  FormControl,
+  FormGroup
+} from '@angular/forms';
 
 import {SearchPipe} from './search-pipe';
 import {orderByPipe} from './orderByPipe';
 
+export class friends {
+  isActive: boolean;
+  firstname: string;
+  phone: string;
+  address: string;
+  cp: string;
+  myRequest: boolean;
+  timestamp: number;
+  image: string;
+}
+
+
 @Component({
   selector: 'my-app',
-  // pipes: [SearchPipe, orderByPipe],
+  //pipes: [SearchPipe, orderByPipe],
   templateUrl: 'app/app.component.html'
 
 
 
 })
 export class AppComponent {
-title = "Carnet d'adresses";
+  title = "Carnet d'adresses";
 
-friends = [
+  friends = [
     {isActive:false, firstname: 'Marie', phone: '0688546622', address: '22 rue de l\'Elysée', cp:'75015', myRequest : false, timestamp: 1476264134, image: "https://randomuser.me/api/portraits/thumb/women/68.jpg" },
     {isActive:false, firstname: 'Noah', phone: '0752824525', address: '2 allée des roses', cp:'93200',myRequest : false, timestamp: 1460256014, image: "https://randomuser.me/api/portraits/thumb/men/61.jpg"},
     {isActive:false, firstname: 'Bill', phone: '0621554738', address: '77 Avenue du Général de Gaulle', cp:'75008',myRequest : true, timestamp: 1469022000, image: "https://randomuser.me/api/portraits/thumb/men/69.jpg"},
@@ -26,21 +44,21 @@ friends = [
 
 
 
-    newFriend:Object = {};
+  newFriend = new friends(false, firstname, '0688461534', '22 rue ballon', '75015', false, 1476264134, 'https://randomuser.me/api/portraits/thumb/men/61.jpg');
 
   details:Object;
 
 
-  onSubmit(){
+  onSubmit(newFriend){
     var timestamp = Math.round(Date.now() / 1000) ;
 
-    console.log('ok');
-    // this.newFriend.isActive = false;
-    // this.newFriend.cp = "75000";
-    // this.newFriend.myRequest = false;
-    // this.newFriend.timestamp = timestamp;
-    // this.newFriend.image = "https://randomuser.me/api/portraits/thumb/men/5.jpg";
-    // this.friends.push(this.newFriend);
+    alert(newFriend);
+    this.newFriend.isActive = false;
+    this.newFriend.cp = "75000";
+    this.newFriend.myRequest = false;
+    this.newFriend.timestamp = timestamp;
+    this.newFriend.image = "https://randomuser.me/api/portraits/thumb/men/5.jpg";
+    this.friends.push(this.newFriend);
 
   }
 
@@ -49,20 +67,20 @@ friends = [
     this.details = friend;
   }
 
-hideDetails() {
-  this.details = false;
-}
+  hideDetails() {
+    this.details = false;
+  }
 
-deleteFriend (friend) {
-  let index = this.friends.indexOf(friend);
-  this.friends.splice(index, 1);
-  this.details = false;
-}
-// |search: term
-//<div [term]="term" class="contactcontainer">
-//[(ngModel)]="newFriend.firstname"
+  deleteFriend (friend) {
+    let index = this.friends.indexOf(friend);
+    this.friends.splice(index, 1);
+    this.details = false;
+  }
+  // |search: term
+  //<div [term]="term" class="contactcontainer">
+  //[(ngModel)]="newFriend.firstname"
 
- }
+}
 
 
 //https://github.com/DenisVuyka/ng2samples-blank
