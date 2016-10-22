@@ -22,7 +22,7 @@ import {orderByPipe} from './orderByPipe';
 export class AppComponent {
   title = "Carnet d'adresses";
   tabfriends = FRIENDS;
-  newFriend:friends = {};
+  newFriend = new friends;
 
 
 
@@ -30,16 +30,18 @@ export class AppComponent {
   details:Object;
 
 
-  onSubmit(){
+  onSubmit() {
     var timestamp = Math.round(Date.now() / 1000) ;
 
-    console.log(this.newFriend);
-    // this.newFriend.isActive = false;
-    // this.newFriend.cp = "75000";
-    // this.newFriend.myRequest = false;
-    // this.newFriend.timestamp = timestamp;
-    // this.newFriend.image = "https://randomuser.me/api/portraits/thumb/men/5.jpg";
-    // this.friends.push(this.newFriend);
+
+    // console.log(this.newFriend.firstname);
+    this.newFriend.isActive = false;
+    this.newFriend.cp = "75000";
+    this.newFriend.myRequest = false;
+    this.newFriend.timestamp = timestamp;
+    this.newFriend.image = "https://randomuser.me/api/portraits/thumb/men/5.jpg";
+    this.tabfriends.push(this.newFriend);
+
 
   }
 
@@ -56,6 +58,7 @@ export class AppComponent {
     let index = this.tabfriends.indexOf(friend);
     this.tabfriends.splice(index, 1);
     this.details = false;
+    console.log(this.tabfriends);
   }
   // |search: term
   //<div [term]="term" class="contactcontainer">

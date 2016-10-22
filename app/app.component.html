@@ -14,11 +14,11 @@
       </form>
     </div>
     <div class="col-xs-8"><input class="form-control"  type="text" name="search" [(ngModel)]="word" placeholder="Rechercher"></div>
-    <form (ngSubmit)="onSubmit()" #friendForm="ngForm">
+    <form (ngSubmit)="onSubmit()">
       <div class="form-group">
-      <div class="col-xs-3"><input type="text" id="firstname" #firstname="ngModel" (ngModel)="newFriend.firstname" required class="form-control" placeholder="prénom" name="firstname"></div>
-      <!-- <div class="col-xs-3"><input class="form form-control" (ngModel)="newFriend.phone" name="phone" required placeholder="téléphone"></div>
-      <div class="col-xs-3"><input class="form form-control" (ngModel)="newFriend.address" name="address" required placeholder="adresse"></div> -->
+      <div class="col-xs-3"><input type="text" [(ngModel)]="newFriend.firstname" required class="form-control" placeholder="prénom" name="firstname"></div>
+      <div class="col-xs-3"><input class="form form-control" [(ngModel)]="newFriend.phone" name="phone" required placeholder="téléphone"></div>
+      <div class="col-xs-3"><input class="form form-control" [(ngModel)]="newFriend.address" name="address" required placeholder="adresse"></div>
     </div>
       <div class="col-xs-3"><button type="submit" class="btn btn-info">Ajouter</button></div>
     </form>
@@ -29,7 +29,7 @@
     <h2>Vous avez {{tabfriends.length}} contacts</h2>
     <div class="contactcontainer">
       <ul>
-        <li  (click)="showDetails(friend)" *ngFor = "let friend of tabfriends">
+        <li  (click)="showDetails(friend)" *ngFor = "let friend of tabfriends | search:word | orderBy:param">
           <button (click)="deleteFriend(friend)" class="btn btn-info">X</button>  <img [src]="friend.image">    {{friend.firstname}}
         </li>
       </ul>
